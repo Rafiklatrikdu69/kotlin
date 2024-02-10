@@ -5,7 +5,7 @@ import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.content.Context
 import java.util.*
-class DatePickerHelper(context: Context, isSpinnerType: Boolean = false) {
+class DatePickerSpinner(context: Context, isSpinnerType: Boolean = false) {
     private var dialog: DatePickerDialog
     private var callback: Callback? = null
     private val listener = OnDateSetListener { datePicker, year, monthOfYear, dayOfMonth ->

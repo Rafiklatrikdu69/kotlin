@@ -1,10 +1,13 @@
 package com.bouchenna.rafik
+import android.content.Intent
 import android.os.Bundle
 import android.provider.ContactsContract.CommonDataKinds.Email
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
@@ -15,24 +18,33 @@ import com.google.android.material.snackbar.Snackbar
 import java.util.Calendar
 import java.util.regex.Pattern
 
-class MainActivity : AppCompatActivity() {
 
+
+class MainActivity : AppCompatActivity() {
+    //Declaration des variables
     private lateinit var button: Button
     private lateinit var textNom: TextView
     private lateinit var textPrenom: TextView
     private lateinit var radioGroup: RadioGroup
-    private lateinit var radioButton: RadioButton
     private lateinit var textDate: EditText
     private lateinit var textTel: TextView
     private lateinit var textEmail: TextView
     private lateinit var checkBoxFavori: CheckBox
     private var date: String? = ""
     private var  EmailValidator:Email?=null
-    lateinit var datePicker: DatePickerHelper
+    lateinit var datePicker: DatePickerSpinner
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        datePicker = DatePickerHelper(this,true)
+
+        val message = intent.getStringExtra(EXTRA_MESSAGE)
+        textPrenom = findViewById(R.id.prenom)
+        textPrenom.text = message
+        if (message != null) {
+            Log.d("tag",message)
+        }
+
+        datePicker = DatePickerSpinner(this,true)
 
         textDate = findViewById(R.id.date)
 
@@ -40,11 +52,29 @@ class MainActivity : AppCompatActivity() {
         textDate.setOnClickListener {
             showDatePickerDialog()
         }
+        val imageView = findViewById<ImageView>(R.id.imageView)
+        val rg = findViewById<View>(R.id.groupe) as RadioGroup
+        rg.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener {
+            override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+                when (checkedId) {
+                    R.id.radioButton4 -> {
+                        imageView.setImageResource(R.drawable.homme)
+                    }
+                    R.id.radioButton5 -> {
+                        imageView.setImageResource(R.drawable.femme)
 
+                    }
+                    R.id.radioButton6 -> {
+                        imageView.setImageResource(R.drawable.autre)
+
+                    }
+                }
+            }
+        })
         button = findViewById(R.id.button2)
         button.setOnClickListener {
             textNom = findViewById(R.id.nom)
-            textPrenom = findViewById(R.id.prenom)
+
             textEmail = findViewById(R.id.email)
             textTel = findViewById(R.id.telephone)
             radioGroup = findViewById(R.id.groupe)
@@ -65,6 +95,7 @@ class MainActivity : AppCompatActivity() {
             val selectRadioButton = if (selected > 0) {
                 val radioButton = findViewById<RadioButton>(selected)
                 radioButton.text.toString()
+
             } else {
                 "Aucun"
             }
@@ -124,7 +155,7 @@ class MainActivity : AppCompatActivity() {
         val d = cal.get(Calendar.DAY_OF_MONTH)
         val m = cal.get(Calendar.MONTH)
         val y = cal.get(Calendar.YEAR)
-        datePicker.showDialog(d, m, y, object : DatePickerHelper.Callback {
+        datePicker.showDialog(d, m, y, object : DatePickerSpinner.Callback {
             override fun onDateSelected(dayofMonth: Int, month: Int, year: Int) {
                 val dayStr = if (dayofMonth < 10) "0${dayofMonth}" else "${dayofMonth}"
                 val mon = month + 1

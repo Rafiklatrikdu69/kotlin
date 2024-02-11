@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="443dp"
+        android:layout_height="101dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/boston"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/nom"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:hint="@string/nom"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@id/imageView"
+        app:layout_constraintStart_toStartOf="@id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/prenom"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:hint="@string/prenom"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="@id/nom"
+        app:layout_constraintTop_toBottomOf="@id/nom"
+
+        />
+
+    <RadioGroup
+        android:id="@+id/groupe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@id/prenom"
+        app:layout_constraintTop_toBottomOf="@id/prenom"
+        app:layout_constraintEnd_toEndOf="@id/prenom">
+
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Homme"
+            app:layout_constraintStart_toStartOf="@id/groupe"
+            app:layout_constraintTop_toBottomOf="@id/groupe"
+            app:layout_constraintEnd_toStartOf="@+id/radioButton5"
+            />
+
+        <RadioButton
+            android:id="@+id/radioButton5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Femme"
+
+            app:layout_constraintStart_toStartOf="@id/groupe"
+            app:layout_constraintTop_toBottomOf="@id/radioButton4"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <RadioButton
+            android:id="@+id/radioButton6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="autre"
+            app:layout_constraintStart_toStartOf="@id/radioButton5"
+            app:layout_constraintTop_toBottomOf="@id/radioButton5"
+            app:layout_constraintStart_toEndOf="@+id/radioButton5"
+
+
+            />
+
+    </RadioGroup>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/date"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:inputType="date"
+        android:hint="@string/hint_pick_up_date"
+        app:layout_constraintStart_toStartOf="@id/groupe"
+        app:layout_constraintTop_toBottomOf="@id/groupe"
+        app:layout_constraintEnd_toEndOf="@id/groupe"
+        />
+
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/telephone"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:inputType="number"
+        android:hint="@string/telephone"
+        app:layout_constraintStart_toStartOf="@id/date"
+        app:layout_constraintTop_toBottomOf="@id/date" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/email"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:hint="@string/email"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="@id/telephone"
+        app:layout_constraintTop_toBottomOf="@id/telephone" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ajouter en favoris"
+        app:layout_constraintStart_toStartOf="@id/email"
+        app:layout_constraintTop_toBottomOf="@id/email"
+        android:theme="@style/ThemeOverlay.Material3.DynamicColors.DayNight"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/cardview_shadow_start_color"
+        android:text="Envoyer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox"
+
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
